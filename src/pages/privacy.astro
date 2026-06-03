@@ -1,0 +1,35 @@
+---
+import { getEntry } from 'astro:content';
+import Layout from '#layouts/Layout.astro';
+
+const entry = await getEntry('landing_page', 'landing-page');
+const config = entry?.data;
+const privacy = config?.pages.privacy;
+
+if (!privacy) {
+	return Astro.redirect('/404.html');
+}
+---
+
+<Layout title={privacy.title}>
+	<main class="py-24 px-4">
+		<div class="container mx-auto max-w-3xl">
+			<h1 class="text-4xl font-bold mb-8">{privacy.title}</h1>
+			<div class="prose prose-lg max-w-none text-text opacity-80 leading-relaxed">
+				{privacy.content}
+			</div>
+			<div class="mt-12">
+				<a href="/" class="text-primary font-bold hover:underline">← Back to Home</a>
+			</div>
+		</div>
+	</main>
+</Layout>
+
+<style>
+	.text-primary {
+		color: var(--color-primary, #2563eb);
+	}
+	.text-text {
+		color: var(--color-text, #0f172a);
+	}
+</style>

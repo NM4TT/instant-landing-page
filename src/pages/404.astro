@@ -1,0 +1,28 @@
+---
+import { getEntry } from 'astro:content';
+import Layout from '#layouts/Layout.astro';
+
+const entry = await getEntry('landing_page', 'landing-page');
+const config = entry?.data;
+
+const error404 = config?.pages.error_404 || { title: "404 - Not Found", message: "Page not found" };
+---
+
+<Layout title={error404.title}>
+	<main class="min-h-[70vh] flex items-center justify-center px-4">
+		<div class="text-center max-w-md">
+			<h1 class="text-6xl font-black text-primary mb-6">404</h1>
+			<h2 class="text-3xl font-bold mb-4">{error404.title}</h2>
+			<p class="text-lg opacity-60 mb-10">{error404.message}</p>
+			<a href="/" class="btn-primary">
+				Back to Home
+			</a>
+		</div>
+	</main>
+</Layout>
+
+<style>
+	.text-primary {
+		color: var(--color-primary, #2563eb);
+	}
+</style>

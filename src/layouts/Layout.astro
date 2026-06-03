@@ -1,0 +1,103 @@
+---
+import '../styles/app.css';
+import { getEntry } from 'astro:content';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const entry = await getEntry('landing_page', 'landing-page');
+const config = entry?.data;
+
+const { title, description } = Astro.props;
+const pageTitle = title || config?.project.name || "Instant Landing Page";
+const pageDescription = description || config?.project.description || "";
+const fonts = config?.branding.fonts;
+const colors = config?.branding.colors;
+const vibe = config?.branding.vibe || 'modern';
+
+const vibeVars = ({
+	modern: {
+		radiusBase: '0.75rem',
+		radiusLg: '1.5rem',
+		borderWidth: '1px',
+		shadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)',
+	},
+	brutalist: {
+		radiusBase: '0px',
+		radiusLg: '0px',
+		borderWidth: '4px',
+		shadow: `8px 8px 0px 0px ${colors?.text || '#000000'}`,
+	},
+	pill: {
+		radiusBase: '9999px',
+		radiusLg: '3rem',
+		borderWidth: '1px',
+		shadow: '0 20px 25px -5px rgb(0 0 0 / 0.05)',
+	}
+} as const)[vibe];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{pageTitle}</title>
+		<meta name="description" content={pageDescription} />
+		
+		{fonts?.google_fonts_url && (
+			<>
+				<link rel="preconnect" href="https://fonts.googleapis.com" />
+				<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+				<link href={fonts.google_fonts_url} rel="stylesheet" />
+			</>
+		)}
+
+		<style define:vars={{
+			primaryColor: colors?.primary || '#2563eb',
+			bgColor: colors?.background || '#ffffff',
+			surfaceColor: colors?.surface || '#f8fafc',
+			textColor: colors?.text || '#0f172a',
+			borderColor: colors?.border || '#e2e8f0',
+			displayFont: fonts?.display ? `'${fonts.display}', sans-serif` : 'sans-serif',
+			sansFont: fonts?.sans ? `'${fonts.sans}', sans-serif` : 'sans-serif',
+			radiusBase: vibeVars.radiusBase,
+			radiusLg: vibeVars.radiusLg,
+			borderWidth: vibeVars.borderWidth,
+			shadowStyle: vibeVars.shadow,
+		}}>
+			:root {
+				--color-primary: var(--primaryColor);
+				--color-background: var(--bgColor);
+				--color-surface: var(--surfaceColor);
+				--color-text: var(--textColor);
+				--color-border: var(--borderColor);
+				--font-display: var(--displayFont);
+				--font-sans: var(--sansFont);
+				--radius-base: var(--radiusBase);
+				--radius-lg: var(--radiusLg);
+				--border-width: var(--borderWidth);
+				--shadow-style: var(--shadowStyle);
+			}
+
+			body {
+				font-family: var(--font-sans);
+				background-color: var(--color-background);
+				color: var(--color-text);
+				margin: 0;
+				padding: 0;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				font-family: var(--font-display);
+			}
+		</style>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

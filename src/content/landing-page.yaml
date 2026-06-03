@@ -1,0 +1,152 @@
+# Project: instant-landing-page configuration
+project:
+  name: "Instant Landing Page"
+  description: "Generate fast, modern, and high-converting landing pages from a single YAML file."
+
+branding:
+  logo_url: "/logo.svg"
+  vibe: "modern" # Aesthetic preset: "modern", "brutalist", or "pill"
+  colors:
+    primary: "#2563eb" # Modern Blue
+    background: "#ffffff"
+    surface: "#f8fafc"
+    text: "#0f172a"
+    border: "#e2e8f0"
+  fonts:
+    google_fonts_url: "https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+    display: "Inter"
+    sans: "Inter"
+
+pages:
+  error_404:
+    title: "404 - Page Not Found"
+    message: "Oops! The page you're looking for doesn't exist. Let's get you back on track."
+  privacy:
+    title: "Privacy Policy"
+    content: "We respect your privacy. This page explains how we handle your data. Spoiler: We don't collect anything unless you explicitly provide it via our CTA links."
+  terms:
+    title: "Terms of Service"
+    content: "By using this landing page generator, you agree to be awesome. All generated content is yours to keep and host wherever you like."
+
+sections:
+  - type: "hero"
+    layout: "split"
+    headline: "Launch Your Next Big Idea in Seconds"
+    subheadline: "Stop wasting time on boilerplate. Define your landing page in YAML and let us handle the performance, SEO, and conversion-optimized layout."
+    visual: "https://placehold.co/800x600/2563eb/ffffff?text=Product+Hero"
+    cta:
+      label: "Get Started Free"
+      link: "#closing"
+
+  - type: "social_proof"
+    logos:
+      - name: "TechCrunch"
+        image_url: "https://placehold.co/200x80/f8fafc/2563eb?text=TechCrunch"
+      - name: "Forbes"
+        image_url: "https://placehold.co/200x80/f8fafc/2563eb?text=Forbes"
+      - name: "Wired"
+        image_url: "https://placehold.co/200x80/f8fafc/2563eb?text=Wired"
+    metrics:
+      - label: "Active Users"
+        value: "50,000+"
+      - label: "Pages Generated"
+        value: "1.2M"
+      - label: "Avg. Load Time"
+        value: "0.4s"
+    testimonials:
+      - quote: "This tool cut our development time by 80%. We launched our MVP landing page in 10 minutes."
+        author: "Sarah Chen"
+        title: "Founder @ QuickLaunch"
+        avatar_url: "https://placehold.co/150x150/2563eb/ffffff?text=SC"
+
+  - type: "benefits"
+    layout: "stack"
+    title: "Why Choose Instant Landing Page?"
+    items:
+      - title: "Focus on Benefits, Not Features"
+        description: "Our generator forces you to think about what your customers actually care about. High-conversion layouts are built-in by default."
+        image_url: "https://placehold.co/600x400/2563eb/ffffff?text=Conversion+Optimization"
+      - title: "Lightning Fast Performance"
+        description: "Built on Astro and Svelte, your pages score 100 on Lighthouse out of the box. Zero bloat, maximum speed."
+        image_url: "https://placehold.co/600x400/2563eb/ffffff?text=Lighthouse+100"
+        reverse: true
+
+  - type: "features"
+    title: "Powerful Features for Modern Teams"
+    description: "Everything you need to build, test, and scale your landing pages in record time."
+    items:
+      - title: "YAML Powered"
+        description: "Purely configuration-driven. No need to touch CSS or HTML if you don't want to."
+        icon: "zap"
+        span: 2
+      - title: "Secure by Design"
+        description: "Static files are inherently more secure than dynamic CMS systems."
+        icon: "shield"
+      - title: "High Performance"
+        description: "Optimized asset loading and zero-JS by default for lightning-fast speeds."
+        icon: "cpu"
+      - title: "Custom Branding"
+        description: "Easily inject your own brand colors, fonts, and logos via the YAML config."
+        span: 2
+
+  - type: "how_it_works"
+    title: "How It Works"
+    steps:
+      - title: "1. Edit Your YAML"
+        description: "Define your content, branding, and sections in a simple, readable configuration file."
+      - title: "2. Preview Instantly"
+        description: "See your changes reflect in real-time with our lightning-fast dev server."
+      - title: "3. Deploy Everywhere"
+        description: "Export as a static site and host it on Vercel, Netlify, or your own server for free."
+
+  - type: "pricing"
+    title: "Simple, Transparent Pricing"
+    description: "Choose the plan that's right for your business growth."
+    plans:
+      - name: "Starter"
+        price: "$0"
+        description: "Perfect for hobbyists and solo creators."
+        features:
+          - "Unlimited YAML Edits"
+          - "Standard Components"
+          - "Community Support"
+        cta:
+          label: "Get Started"
+          link: "#"
+      - name: "Pro"
+        price: "$29"
+        interval: "mo"
+        description: "Everything you need for a professional launch."
+        is_popular: true
+        features:
+          - "All Starter Features"
+          - "Custom Domain Support"
+          - "Advanced Layouts"
+          - "Priority Support"
+        cta:
+          label: "Start 14-Day Free Trial"
+          link: "#"
+      - name: "Enterprise"
+        price: "Custom"
+        description: "For teams requiring maximum scale and control."
+        features:
+          - "All Pro Features"
+          - "Custom Components"
+          - "SLA Guarantee"
+          - "Dedicated Account Manager"
+        cta:
+          label: "Contact Sales"
+          link: "#"
+
+  - type: "closing"
+    headline: "Ready to Scale Your Business?"
+    subheadline: "Join thousands of creators who are launching faster than ever before."
+    cta:
+      label: "Start Building Now"
+      link: "https://github.com/nmatute/instant-landing-page"
+    risk_reversal: "No credit card required. Cancel anytime."
+    faqs:
+      - question: "Is it really free to host?"
+        answer: "Yes! Since we generate static files, you can host them for free on platforms like GitHub Pages or Netlify."
+      - question: "Can I use custom domains?"
+        answer: "Absolutely. You can point your custom domain to any hosting provider you choose for your static site."

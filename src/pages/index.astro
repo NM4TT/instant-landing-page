@@ -1,0 +1,19 @@
+---
+import { getEntry } from 'astro:content';
+import Layout from '#layouts/Layout.astro';
+import LandingPageGenerator from '#components/landing-page/LandingPageGenerator.svelte';
+
+const entry = await getEntry('landing_page', 'landing-page');
+const config = entry?.data;
+
+if (!config) {
+	return Astro.redirect('/404.html');
+}
+---
+
+<Layout 
+	title={config.project.name} 
+	description={config.project.description}
+>
+	<LandingPageGenerator {config} client:load />
+</Layout>

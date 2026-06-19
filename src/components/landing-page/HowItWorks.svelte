@@ -8,7 +8,7 @@
   let { section }: Props = $props();
 </script>
 
-<section class="py-24 bg-white">
+<section class="py-24 bg-[var(--color-background)]">
   <div class="container mx-auto px-4">
     <h2 class="text-4xl md:text-5xl font-bold text-center text-text mb-20">
       {section.title}

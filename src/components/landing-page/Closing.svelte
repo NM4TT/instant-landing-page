@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { slide } from 'svelte/transition';
   import type { ClosingSection } from '#lib/types';
 
   interface Props {
@@ -12,6 +13,8 @@
   function toggleFaq(index: number) {
     activeFaq = activeFaq === index ? null : index;
   }
+
+  const ctaLink = $derived(section.cta.link.includes('github') ? '#' : section.cta.link);
 </script>
 
 <section id="closing" class="py-24 bg-surface">
@@ -24,7 +27,7 @@
       
       <div class="flex flex-col items-center gap-4">
         <a 
-          href={section.cta.link}
+          href={ctaLink}
           class="btn-primary"
         >
           {section.cta.label}
@@ -43,12 +46,15 @@
         <div class="space-y-4">
           {#each section.faqs as faq, i}
             <div 
-              class="border border-border overflow-hidden bg-white"
+              class="border border-border overflow-hidden bg-[var(--color-background)]"
               style="border-radius: var(--radius-base); border-width: var(--border-width); box-shadow: var(--shadow-style);"
             >
               <button 
                 class="w-full text-left p-6 font-bold text-text flex justify-between items-center hover:bg-surface/50 transition-colors"
                 onclick={() => toggleFaq(i)}
+                aria-expanded={activeFaq === i}
+                aria-controls={`faq-panel-${i}`}
+                id={`faq-btn-${i}`}
               >
                 <span>{faq.question}</span>
                 <span class="text-primary transform transition-transform {activeFaq === i ? 'rotate-180' : ''}">
@@ -56,7 +62,13 @@
                 </span>
               </button>
               {#if activeFaq === i}
-                <div class="p-6 pt-0 text-text opacity-70 border-t border-border">
+                <div 
+                  id={`faq-panel-${i}`}
+                  role="region"
+                  aria-labelledby={`faq-btn-${i}`}
+                  class="p-6 pt-0 text-text opacity-70 border-t border-border"
+                  transition:slide={{ duration: 250 }}
+                >
                   {faq.answer}
                 </div>
               {/if}

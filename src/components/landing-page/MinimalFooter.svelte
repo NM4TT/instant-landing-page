@@ -9,7 +9,7 @@
   const currentYear = new Date().getFullYear();
 </script>
 
-<footer class="py-12 bg-white border-t border-border">
+<footer class="py-12 bg-[var(--color-background)] border-t border-border">
   <div class="container mx-auto px-4">
     <div class="flex flex-col md:flex-row justify-between items-center gap-8">
       <div class="flex items-center gap-3">

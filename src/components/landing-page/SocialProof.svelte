@@ -8,7 +8,7 @@
   let { section }: Props = $props();
 </script>
 
-<section class="py-16 bg-white">
+<section class="py-16 bg-[var(--color-background)]">
   <div class="container mx-auto px-4">
     {#if section.logos && section.logos.length > 0}
       <div class="text-center mb-16">
@@ -47,7 +47,7 @@
       <div class="max-w-4xl mx-auto">
         {#each section.testimonials as testimonial}
           <blockquote 
-            class="text-center p-12 bg-white"
+            class="text-center p-12 bg-[var(--color-surface)]"
             style="border-radius: var(--radius-lg); border-width: var(--border-width); border-color: var(--color-border); box-shadow: var(--shadow-style);"
           >
             <p class="text-2xl md:text-3xl italic text-text mb-8 leading-relaxed">

@@ -20,7 +20,7 @@
       <div class="flex flex-wrap justify-center gap-12">
         {#each section.items as item}
           <div 
-            class="flex-1 min-w-[300px] max-w-sm p-8 bg-white"
+            class="flex-1 min-w-[300px] max-w-sm p-8 bg-[var(--color-background)]"
             style="border-radius: var(--radius-lg); border-width: var(--border-width); border-color: var(--color-border); box-shadow: var(--shadow-style);"
           >
             {#if item.image_url}

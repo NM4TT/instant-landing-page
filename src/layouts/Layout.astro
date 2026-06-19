@@ -17,6 +17,22 @@ const fonts = config?.branding.fonts;
 const colors = config?.branding.colors;
 const vibe = config?.branding.vibe || 'modern';
 
+const closingSection = config?.sections.find((s: any) => s.type === 'closing');
+const faqs = closingSection?.faqs || [];
+
+const faqSchema = faqs.length > 0 ? {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	"mainEntity": faqs.map((faq: any) => ({
+		"@type": "Question",
+		"name": faq.question,
+		"acceptedAnswer": {
+			"@type": "Answer",
+			"text": faq.answer
+		}
+	}))
+} : null;
+
 const vibeVars = ({
 	modern: {
 		radiusBase: '0.75rem',
@@ -49,6 +65,26 @@ const vibeVars = ({
 		<title>{pageTitle}</title>
 		<meta name="description" content={pageDescription} />
 		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={pageDescription} />
+		{config?.branding.logo_url && (
+			<meta property="og:image" content={new URL(config.branding.logo_url, Astro.url).toString()} />
+		)}
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:title" content={pageTitle} />
+		<meta property="twitter:description" content={pageDescription} />
+
+		<!-- Canonical -->
+		<link rel="canonical" href={Astro.url.href} />
+
+		{faqSchema && (
+			<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+		)}
+
 		{fonts?.google_fonts_url && (
 			<>
 				<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -63,8 +99,8 @@ const vibeVars = ({
 			surfaceColor: colors?.surface || '#f8fafc',
 			textColor: colors?.text || '#0f172a',
 			borderColor: colors?.border || '#e2e8f0',
-			displayFont: fonts?.display ? `'${fonts.display}', sans-serif` : 'sans-serif',
-			sansFont: fonts?.sans ? `'${fonts.sans}', sans-serif` : 'sans-serif',
+			displayFont: fonts?.display ? `'${fonts.display}', var(--font-sans-fallback)` : 'var(--font-display-fallback)',
+			sansFont: fonts?.sans ? `'${fonts.sans}', var(--font-sans-fallback)` : 'var(--font-sans-fallback)',
 			radiusBase: vibeVars.radiusBase,
 			radiusLg: vibeVars.radiusLg,
 			borderWidth: vibeVars.borderWidth,

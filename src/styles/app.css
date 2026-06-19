@@ -75,10 +75,29 @@
   box-shadow: none;
 }
 
+.btn-secondary {
+  @apply font-display text-xs font-bold uppercase tracking-widest py-3 px-8 cursor-pointer
+         transition-all duration-200 active:opacity-80;
+  background-color: transparent;
+  border-color: var(--secondary);
+  border-width: var(--border-width);
+  border-radius: var(--radius-base);
+  box-shadow: none;
+  color: var(--secondary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary);
+  color: #ffffff;
+  box-shadow: var(--shadow-style);
+}
+
 .input-base {
-  @apply w-full p-4 bg-white 
+  @apply w-full p-4 
          focus:ring-2 focus:ring-secondary/50 focus:border-secondary 
          outline-hidden transition-all;
+  background-color: var(--color-background);
+  color: var(--color-text);
   border-width: var(--border-width);
   border-radius: var(--radius-base);
   border-color: color-mix(in srgb, var(--secondary) 20%, transparent);
@@ -86,4 +105,22 @@
 
 .input-error {
   @apply border-red-500 focus:ring-red-500/50 focus:border-red-500 animate-shake;
+}
+
+/* Accessibility Focus States */
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.input-base:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion Settings */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

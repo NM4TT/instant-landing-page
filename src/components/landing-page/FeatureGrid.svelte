@@ -20,7 +20,7 @@
     <div class="flex flex-wrap justify-center gap-6">
       {#each section.items as item}
         <div 
-          class="p-8 border border-[var(--color-border)] bg-[var(--color-background)] transition-all hover:shadow-xl flex-none w-full
+          class="feature-card p-8 border border-[var(--color-border)] bg-[var(--color-background)] flex-none w-full
                  {item.span === 2 ? 'md:max-w-2xl' : 'md:max-w-sm'}"
           style="border-radius: var(--radius-lg); border-width: var(--border-width); box-shadow: var(--shadow-style);"
         >
@@ -61,3 +61,21 @@
     </div>
   </div>
 </section>
+
+<style>
+  .feature-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+  }
+  /* If radius is 0px, it means brutalist vibe is active, so we snap translate and increase flat shadow */
+  :global(:root[style*="radiusBase: 0px"]) .feature-card:hover,
+  :global(:root[style*="--radius-base:0px"]) .feature-card:hover,
+  :global([style*="--radius-base: 0px"]) .feature-card:hover,
+  :global([style*="--radius-base:0px"]) .feature-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0px 0px var(--color-text, #000000) !important;
+  }
+</style>

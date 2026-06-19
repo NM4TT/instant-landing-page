@@ -59,7 +59,7 @@
 
           <a 
             href={plan.cta.link}
-            class="btn-primary w-full text-center block"
+            class="{plan.is_popular ? 'btn-primary' : 'btn-secondary'} w-full text-center block"
           >
             {plan.cta.label}
           </a>

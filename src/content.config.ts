@@ -147,7 +147,7 @@ const landingPageSchema = z.object({
 });
 
 const landingPage = defineCollection({
-  loader: glob({ pattern: "landing-page.yaml", base: "src/content" }),
+  loader: glob({ pattern: "landing-page.yaml", base: "." }),
   schema: landingPageSchema,
 });
 

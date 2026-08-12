@@ -56,6 +56,10 @@ export interface HeroSection {
     label: string;
     link: string;
   };
+  secondary_cta?: {
+    label: string;
+    link: string;
+  };
 }
 
 export interface SocialProofSection {
@@ -137,6 +141,10 @@ export interface ClosingSection {
   headline: string;
   subheadline?: string;
   cta: {
+    label: string;
+    link: string;
+  };
+  secondary_cta?: {
     label: string;
     link: string;
   };

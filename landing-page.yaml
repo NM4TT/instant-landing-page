@@ -37,6 +37,9 @@ sections:
     cta:
       label: "Get Started Free"
       link: "#closing"
+    secondary_cta:
+      label: "View Documentation"
+      link: "#features"
 
   - type: "social_proof"
     logos:
@@ -144,6 +147,9 @@ sections:
     cta:
       label: "Start Building Now"
       link: "https://github.com/nmatute/instant-landing-page"
+    secondary_cta:
+      label: "Read the Docs"
+      link: "#"
     risk_reversal: "No credit card required. Cancel anytime."
     faqs:
       - question: "Is it really free to host?"

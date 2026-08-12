@@ -11,6 +11,10 @@ const heroSchema = z.object({
     label: z.string(),
     link: z.string(),
   }),
+  secondary_cta: z.object({
+    label: z.string(),
+    link: z.string(),
+  }).optional(),
 });
 
 const socialProofSchema = z.object({
@@ -92,6 +96,10 @@ const closingSchema = z.object({
     label: z.string(),
     link: z.string(),
   }),
+  secondary_cta: z.object({
+    label: z.string(),
+    link: z.string(),
+  }).optional(),
   risk_reversal: z.string().optional(),
   faqs: z.array(z.object({
     question: z.string(),

@@ -24,6 +24,14 @@
         >
           {section.cta.label}
         </a>
+        {#if section.secondary_cta}
+          <a 
+            href={section.secondary_cta.link}
+            class="btn-secondary"
+          >
+            {section.secondary_cta.label}
+          </a>
+        {/if}
       </div>
     </div>
     

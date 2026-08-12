@@ -26,12 +26,22 @@
       {/if}
       
       <div class="flex flex-col items-center gap-4">
-        <a 
-          href={ctaLink}
-          class="btn-primary"
-        >
-          {section.cta.label}
-        </a>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href={ctaLink}
+            class="btn-primary"
+          >
+            {section.cta.label}
+          </a>
+          {#if section.secondary_cta}
+            <a 
+              href={section.secondary_cta.link.includes('github') ? '#' : section.secondary_cta.link}
+              class="btn-secondary"
+            >
+              {section.secondary_cta.label}
+            </a>
+          {/if}
+        </div>
         {#if section.risk_reversal}
           <p class="text-sm text-text opacity-50 font-medium">
             {section.risk_reversal}

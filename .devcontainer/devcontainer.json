@@ -1,19 +1,25 @@
 {
-  "name": "instant-landing-page Dev Container",
-  "build": {
-    "dockerfile": "Dockerfile"
+  "name": "Node.js (with Playwright) Environment",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts",
+      "pnpm": true
+    },
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
   },
   "customizations": {
     "vscode": {
       "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
         "astro-build.astro-vscode",
-        "svelte.svelte-vscode",
         "bradlc.vscode-tailwindcss",
         "ms-playwright.playwright"
       ]
     }
   },
-  "forwardPorts": [4321],
-  "postCreateCommand": "pnpm install && npx playwright install --with-deps chromium",
-  "remoteUser": "node"
+  "remoteUser": "vscode",
+  "postCreateCommand": "pnpm install && sudo npx playwright install-deps && npx playwright install || echo 'Failed to setup playwright'"
 }
